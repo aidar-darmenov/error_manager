@@ -7,8 +7,8 @@ import (
 	"strconv"
 )
 
-func (ws *GinHandler) Start() {
-	e := ws.Engine.Run(":" + strconv.Itoa(ws.Service.GetConfigParams().HttpPort))
+func (h *GinHandler) Start() {
+	e := h.Engine.Run(":" + strconv.Itoa(h.Service.GetConfigParams().HttpPort))
 	if e != nil {
 		log.Fatalln(e)
 	}
