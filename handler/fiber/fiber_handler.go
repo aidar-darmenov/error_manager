@@ -2,10 +2,8 @@ package fiber
 
 import (
 	"github.com/aidar-darmenov/error_manager/interfaces"
-	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber/v2"
-	"log"
-	"strconv"
+	"google.golang.org/grpc"
 )
 
 func (h *FiberHandler) Start() {
@@ -13,15 +11,12 @@ func (h *FiberHandler) Start() {
 
 	InitRoutes(app, h)
 
-	e := h.Engine.Run(":" + strconv.Itoa(h.HUseCase.GetConfigParams().HttpPort))
-	if e != nil {
-		log.Fatalln(e)
-	}
 }
 
 type FiberHandler struct {
-	HUseCase interfaces.UseCase
-	Engine   *gin.Engine
+	HUseCase   interfaces.UseCase
+	Router     fiber.Router
+	GrpcRouter *grpc.Server
 }
 
 func (h *FiberHandler) UseCase() interfaces.UseCase {
@@ -35,13 +30,10 @@ func InitRoutes(app *fiber.App, h interfaces.Handler) {
 }
 
 func errorRoutes(r fiber.Router, h interfaces.Handler) {
-	er := &ErrorRouter{
-		Handler: h,
-	}
 
-	r.Get("/error/:id", er.GetErrorById)
-	r.Post("/error", er.AddError)
-	r.Get("/errors", er.GetAllErrors)
-	r.Delete("error/:id", er.DeleteError)
-	r.Put("/error/:id", er.EditError)
+	r.Get("/error/:id", h.GetErrorById)
+	r.Post("/error", h.AddError)
+	r.Get("/errors", h.GetAllErrors)
+	r.Delete("error/:id", h.DeleteError)
+	r.Put("/error/:id", h.EditError)
 }

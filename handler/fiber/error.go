@@ -9,18 +9,18 @@ type ErrorRouter struct {
 	Handler interfaces.Handler
 }
 
-func (r *ErrorRouter) GetErrorById(c *fiber.Ctx) error {
+func (r *FiberHandler) GetErrorById(c *fiber.Ctx) error {
 	return nil
 }
-func (r *ErrorRouter) AddError(c *fiber.Ctx) error {
+func (r *FiberHandler) AddError(c *fiber.Ctx) error {
 	return nil
 }
-func (r *ErrorRouter) GetAllErrors(c *fiber.Ctx) error {
+func (r *FiberHandler) GetAllErrors(c *fiber.Ctx) error {
 	return nil
 }
-func (r *ErrorRouter) DeleteError(c *fiber.Ctx) error {
+func (r *FiberHandler) DeleteError(c *fiber.Ctx) error {
 	return nil
 }
-func (r *ErrorRouter) EditError(c *fiber.Ctx) error {
+func (r *FiberHandler) EditError(c *fiber.Ctx) error {
 	return nil
 }

@@ -1,4 +1,5 @@
 {
   "HttpPort": 8081,
-  "ListenerHost": "localhost"
+  "ListenerHost": "localhost",
+  "GrpcPort" : 8082
 }

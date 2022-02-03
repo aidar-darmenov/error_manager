@@ -9,6 +9,7 @@ import (
 type Configuration struct {
 	HttpPort     int
 	ListenerHost string
+	GrpcPort     int `json:"GrpcPort"`
 }
 
 //NewConfiguration read file, return configuration
